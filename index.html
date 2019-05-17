@@ -1,0 +1,288 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>TD4 Emulator Web</title>
+	<link rel="stylesheet" type="text/css" href="td4emu.css">
+</head>
+<body>
+
+<header>
+	<h1>TD4 Emulator Web</h1>
+</header>
+
+<div id="container">
+
+<div class="box">
+
+<h2>Register</h2>
+
+<div class="register">
+<h3>Register A</h3>
+<span id="registor-a"></span>
+</div>
+
+<div class="register">
+<h3>Register B</h3>
+<span id="registor-b"></span>
+</div>
+
+<div class="register">
+<h3>C Flag</h3>
+<span id="c-flag"></span>
+</div>
+
+<div class="register">
+<h3>Program<br>Counter</h3>
+<span id="program-counter"></span>
+</div>
+
+<div class="register">
+<h3>Output Port</h3>
+<span id="output-port"></span>
+</div>
+
+<div class="register">
+<h3>Input Port</h3>
+<form name="inputport">
+<input type="checkbox" name="bit">
+<input type="checkbox" name="bit">
+<input type="checkbox" name="bit">
+<input type="checkbox" name="bit">
+</form>
+</div>
+
+<div class="register">
+<h3>Clock Generator</h3>
+<form id="clockgenerator">
+<input type="radio" name="setclock" id="1hz" onclick="set_clock_generator(1000)">1 Hz<br>
+<input type="radio" name="setclock" id="10hz" onclick="set_clock_generator(100)">10 Hz<br>
+<input type="radio" name="setclock" id="manual" onclick="set_clock_generator(0)" checked>Manual<br>
+</form>
+</div>
+
+<div class="register">
+<form>
+  <input type="button" value="Clock" onclick="clock()"><br>
+  <input type="button" value="Reset" onclick="reset_td4()">
+</form>
+</div>
+
+</div>
+<!-- </div> -->
+
+<div class="box">
+<h2>ROM</h2>
+<form>
+  <input type="button" value="Disassemble" onclick="update_assembly()">
+  <input type="button" value="Clear" onclick="clear_rom()">
+</form>
+<form id="rom" name="rom" autocomplete="off">
+<input type="text" name="order" onInput="update_bin(0)">
+<input type="checkbox" name="bit">
+<input type="checkbox" name="bit">
+<input type="checkbox" name="bit">
+<input type="checkbox" name="bit">
+<input type="checkbox" name="bit">
+<input type="checkbox" name="bit">
+<input type="checkbox" name="bit">
+<input type="checkbox" name="bit">
+<span name="address"></span>
+<br>
+<input type="text" name="order" onInput="update_bin(1)">
+<input type="checkbox" name="bit">
+<input type="checkbox" name="bit">
+<input type="checkbox" name="bit">
+<input type="checkbox" name="bit">
+<input type="checkbox" name="bit">
+<input type="checkbox" name="bit">
+<input type="checkbox" name="bit">
+<input type="checkbox" name="bit">
+<span name="address"></span>
+<br>
+<input type="text" name="order" onInput="update_bin(2)">
+<input type="checkbox" name="bit">
+<input type="checkbox" name="bit">
+<input type="checkbox" name="bit">
+<input type="checkbox" name="bit">
+<input type="checkbox" name="bit">
+<input type="checkbox" name="bit">
+<input type="checkbox" name="bit">
+<input type="checkbox" name="bit">
+<span name="address"></span>
+<br>
+<input type="text" name="order" onInput="update_bin(3)">
+<input type="checkbox" name="bit">
+<input type="checkbox" name="bit">
+<input type="checkbox" name="bit">
+<input type="checkbox" name="bit">
+<input type="checkbox" name="bit">
+<input type="checkbox" name="bit">
+<input type="checkbox" name="bit">
+<input type="checkbox" name="bit">
+<span name="address"></span>
+<br>
+<input type="text" name="order" onInput="update_bin(4)">
+<input type="checkbox" name="bit">
+<input type="checkbox" name="bit">
+<input type="checkbox" name="bit">
+<input type="checkbox" name="bit">
+<input type="checkbox" name="bit">
+<input type="checkbox" name="bit">
+<input type="checkbox" name="bit">
+<input type="checkbox" name="bit">
+<span name="address"></span>
+<br>
+<input type="text" name="order" onInput="update_bin(5)">
+<input type="checkbox" name="bit">
+<input type="checkbox" name="bit">
+<input type="checkbox" name="bit">
+<input type="checkbox" name="bit">
+<input type="checkbox" name="bit">
+<input type="checkbox" name="bit">
+<input type="checkbox" name="bit">
+<input type="checkbox" name="bit">
+<span name="address"></span>
+<br>
+<input type="text" name="order" onInput="update_bin(6)">
+<input type="checkbox" name="bit">
+<input type="checkbox" name="bit">
+<input type="checkbox" name="bit">
+<input type="checkbox" name="bit">
+<input type="checkbox" name="bit">
+<input type="checkbox" name="bit">
+<input type="checkbox" name="bit">
+<input type="checkbox" name="bit">
+<span name="address"></span>
+<br>
+<input type="text" name="order" onInput="update_bin(7)">
+<input type="checkbox" name="bit">
+<input type="checkbox" name="bit">
+<input type="checkbox" name="bit">
+<input type="checkbox" name="bit">
+<input type="checkbox" name="bit">
+<input type="checkbox" name="bit">
+<input type="checkbox" name="bit">
+<input type="checkbox" name="bit">
+<span name="address"></span>
+<br>
+<input type="text" name="order" onInput="update_bin(8)">
+<input type="checkbox" name="bit">
+<input type="checkbox" name="bit">
+<input type="checkbox" name="bit">
+<input type="checkbox" name="bit">
+<input type="checkbox" name="bit">
+<input type="checkbox" name="bit">
+<input type="checkbox" name="bit">
+<input type="checkbox" name="bit">
+<span name="address"></span>
+<br>
+<input type="text" name="order" onInput="update_bin(9)">
+<input type="checkbox" name="bit">
+<input type="checkbox" name="bit">
+<input type="checkbox" name="bit">
+<input type="checkbox" name="bit">
+<input type="checkbox" name="bit">
+<input type="checkbox" name="bit">
+<input type="checkbox" name="bit">
+<input type="checkbox" name="bit">
+<span name="address"></span>
+<br>
+<input type="text" name="order" onInput="update_bin(10)">
+<input type="checkbox" name="bit">
+<input type="checkbox" name="bit">
+<input type="checkbox" name="bit">
+<input type="checkbox" name="bit">
+<input type="checkbox" name="bit">
+<input type="checkbox" name="bit">
+<input type="checkbox" name="bit">
+<input type="checkbox" name="bit">
+<span name="address"></span>
+<br>
+<input type="text" name="order" onInput="update_bin(11)">
+<input type="checkbox" name="bit">
+<input type="checkbox" name="bit">
+<input type="checkbox" name="bit">
+<input type="checkbox" name="bit">
+<input type="checkbox" name="bit">
+<input type="checkbox" name="bit">
+<input type="checkbox" name="bit">
+<input type="checkbox" name="bit">
+<span name="address"></span>
+<br>
+<input type="text" name="order" onInput="update_bin(12)">
+<input type="checkbox" name="bit">
+<input type="checkbox" name="bit">
+<input type="checkbox" name="bit">
+<input type="checkbox" name="bit">
+<input type="checkbox" name="bit">
+<input type="checkbox" name="bit">
+<input type="checkbox" name="bit">
+<input type="checkbox" name="bit">
+<span name="address"></span>
+<br>
+<input type="text" name="order" onInput="update_bin(13)">
+<input type="checkbox" name="bit">
+<input type="checkbox" name="bit">
+<input type="checkbox" name="bit">
+<input type="checkbox" name="bit">
+<input type="checkbox" name="bit">
+<input type="checkbox" name="bit">
+<input type="checkbox" name="bit">
+<input type="checkbox" name="bit">
+<span name="address"></span>
+<br>
+<input type="text" name="order" onInput="update_bin(14)">
+<input type="checkbox" name="bit">
+<input type="checkbox" name="bit">
+<input type="checkbox" name="bit">
+<input type="checkbox" name="bit">
+<input type="checkbox" name="bit">
+<input type="checkbox" name="bit">
+<input type="checkbox" name="bit">
+<input type="checkbox" name="bit">
+<span name="address"></span>
+<br>
+<input type="text" name="order" onInput="update_bin(15)">
+<input type="checkbox" name="bit">
+<input type="checkbox" name="bit">
+<input type="checkbox" name="bit">
+<input type="checkbox" name="bit">
+<input type="checkbox" name="bit">
+<input type="checkbox" name="bit">
+<input type="checkbox" name="bit">
+<input type="checkbox" name="bit">
+<span name="address"></span>
+<br>
+</form>
+</div>
+
+<div class="box">
+<h2>TD4 Instruction Set</h2>
+<table id="instructionset">
+<tr><th>Instruction</th><th>Opcode</th></tr>
+<tr><td>ADD A,Im</td><td>0000</td></tr>
+<tr><td>ADD B,Im</td><td>0101</td></tr>
+<tr><td>MOV A,Im</td><td>0011</td></tr>
+<tr><td>MOV B,Im</td><td>0111</td></tr>
+<tr><td>MOV A,B</td><td>0001</td></tr>
+<tr><td>MOV B,A</td><td>0100</td></tr>
+<tr><td>JMP Im</td><td>1111</td></tr>
+<tr><td>JNC Im</td><td>1110</td></tr>
+<tr><td>IN  A</td><td>0010</td></tr>
+<tr><td>IN  B</td><td>0110</td></tr>
+<tr><td>OUT B</td><td>1001</td></tr>
+<tr><td>OUT Im</td><td>1011</td></tr>
+</table>
+
+</div>
+
+</div>
+
+<footer>
+	<a href="https://umtkm.github.io">&lt;&lt; Return to umtkm.github.io</a>
+</footer>
+
+</body>
+<script type="text/javascript" src="td4emu.js"></script>
+</html>
